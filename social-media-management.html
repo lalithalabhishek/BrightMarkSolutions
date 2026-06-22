@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Social Media Management – BrightMark Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@700;800;900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0D0D0D;
+    --charcoal: #141414;
+    --charcoal-2: #1C1C1C;
+    --saffron: #FF9933;
+    --saffron-dark: #E07A10;
+    --saffron-light: #FFB566;
+    --navy: #1A3C6E;
+    --navy-dark: #122B52;
+    --white: #ffffff;
+    --off-white: #F7F9FC;
+    --text-body: #2E3A4A;
+    --text-muted: #5A6A7A;
+    --text-on-dark: rgba(255,255,255,0.75);
+    --border-light: #DDE4EE;
+    --border-dark: rgba(255,255,255,0.1);
+    --radius: 12px;
+    --font-display: 'Sora', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--text-body); background: var(--white); font-size: 16px; line-height: 1.7; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--navy);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .nav-logo { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--white); text-decoration: none; }
+  .nav-logo span { color: var(--saffron); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--saffron); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 100px 2rem 110px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-accent-bar {
+    position: absolute; top: 0; left: 0;
+    width: 6px; height: 100%;
+    background: var(--saffron);
+  }
+  .hero-grid {
+    max-width: 1060px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    color: var(--saffron);
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    border-left: 3px solid var(--saffron);
+    padding-left: 10px;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--saffron); }
+  .hero-desc { color: var(--text-on-dark); font-size: 1.05rem; line-height: 1.75; margin-bottom: 2rem; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--saffron); color: var(--black);
+    font-weight: 800; font-size: 0.92rem;
+    padding: 14px 30px; border-radius: var(--radius);
+    text-decoration: none; letter-spacing: 0.3px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--saffron-dark); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-block;
+    background: transparent; color: var(--white);
+    font-weight: 700; font-size: 0.92rem;
+    padding: 13px 28px; border-radius: var(--radius);
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    margin-left: 1rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--saffron); color: var(--saffron); }
+  .hero-stat-block {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .hero-stat {
+    background: var(--charcoal-2);
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.25rem;
+  }
+  .hero-stat .num {
+    font-family: var(--font-display);
+    font-size: 2.4rem; font-weight: 900;
+    color: var(--saffron);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .hero-stat .label { font-size: 0.85rem; color: var(--text-on-dark); line-height: 1.4; }
+
+  /* ── WHAT'S INCLUDED ── */
+  .included { padding: 80px 2rem; background: var(--white); }
+  .section-tag {
+    display: inline-block;
+    background: rgba(255,153,51,0.1);
+    color: var(--saffron-dark);
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 1.8px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 100px;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 900; color: var(--black);
+    letter-spacing: -0.8px; line-height: 1.15;
+    margin-bottom: 0.75rem;
+  }
+  .section-title em { font-style: normal; color: var(--saffron); }
+  .section-sub { color: var(--text-muted); max-width: 520px; font-size: 0.97rem; }
+  .section-header { margin-bottom: 3rem; }
+
+  .included-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem; max-width: 1060px; margin: 0 auto;
+  }
+  .inc-card {
+    background: var(--off-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.25rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .inc-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
+  .inc-icon {
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: var(--saffron);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .inc-icon svg { width: 20px; height: 20px; stroke: var(--black); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .inc-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--black); margin-bottom: 0.25rem; line-height: 1.3; }
+  .inc-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+
+  /* ── WHY IT MATTERS ── */
+  .why { padding: 80px 2rem; background: var(--charcoal); }
+  .why-inner { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .why-text .section-title { color: var(--white); }
+  .why-text .section-sub { color: var(--text-on-dark); }
+  .why-text .section-tag { background: rgba(255,153,51,0.15); }
+  .problem-solution { margin-top: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+  .ps-item { display: flex; gap: 1rem; }
+  .ps-badge {
+    flex-shrink: 0;
+    padding: 3px 12px; border-radius: 100px;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    height: fit-content; margin-top: 2px;
+  }
+  .ps-badge.problem { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); }
+  .ps-badge.solution { background: rgba(255,153,51,0.2); color: var(--saffron); }
+  .ps-item p { font-size: 0.93rem; color: var(--text-on-dark); line-height: 1.6; }
+  .ps-item p strong { color: var(--white); font-weight: 600; }
+  .why-visual {
+    background: var(--charcoal-2);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .why-visual-title { font-size: 0.78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; }
+  .why-bar-row { display: flex; flex-direction: column; gap: 6px; }
+  .why-bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; }
+  .why-bar-label span:first-child { color: var(--text-on-dark); }
+  .why-bar-label span:last-child { color: var(--saffron); font-weight: 700; }
+  .why-bar-track { height: 8px; background: rgba(255,255,255,0.07); border-radius: 100px; overflow: hidden; }
+  .why-bar-fill { height: 100%; background: var(--saffron); border-radius: 100px; }
+
+  /* ── PROCESS ── */
+  .process { padding: 80px 2rem; background: var(--white); }
+  .process-inner { max-width: 1060px; margin: 0 auto; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; position: relative; }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: calc(12.5%); right: calc(12.5%);
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--saffron) 0, var(--saffron) 8px, transparent 8px, transparent 16px);
+  }
+  .step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 1rem; }
+  .step-num {
+    width: 56px; height: 56px;
+    background: var(--black); color: var(--saffron);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 1.3rem; font-weight: 900;
+    margin-bottom: 1.25rem;
+    border: 3px solid var(--saffron);
+    position: relative; z-index: 1;
+  }
+  .step h4 { font-size: 0.97rem; font-weight: 700; color: var(--black); margin-bottom: 0.5rem; line-height: 1.3; }
+  .step p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── PLATFORMS ── */
+  .platforms { padding: 60px 2rem; background: var(--off-white); border-top: 1px solid var(--border-light); }
+  .platforms-inner { max-width: 1060px; margin: 0 auto; text-align: center; }
+  .platforms-inner .section-title { margin-bottom: 2.5rem; }
+  .platform-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+  .platform-badge {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: var(--white); border: 1px solid var(--border-light);
+    border-radius: 100px; padding: 10px 20px;
+    font-size: 0.9rem; font-weight: 600; color: var(--text-body);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .platform-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── PRICING ── */
+  .pricing { padding: 80px 2rem; background: var(--black); }
+  .pricing .section-title { color: var(--white); }
+  .pricing .section-sub { color: var(--text-on-dark); }
+  .pricing .section-tag { background: rgba(255,153,51,0.15); }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; max-width: 960px; margin: 3rem auto 0;
+  }
+  .pricing-card {
+    background: var(--charcoal-2);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 2rem 1.75rem;
+    display: flex; flex-direction: column; gap: 0;
+    position: relative;
+    transition: transform 0.2s;
+  }
+  .pricing-card:hover { transform: translateY(-4px); }
+  .pricing-card.featured {
+    background: var(--saffron);
+    border-color: var(--saffron);
+  }
+  .popular-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--black); color: var(--saffron);
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 5px 16px; border-radius: 100px;
+    border: 1.5px solid var(--saffron);
+    white-space: nowrap;
+  }
+  .plan-name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: var(--white); margin-bottom: 0.5rem; }
+  .pricing-card.featured .plan-name { color: var(--black); }
+  .plan-desc { font-size: 0.85rem; color: var(--text-on-dark); margin-bottom: 1.5rem; line-height: 1.55; }
+  .pricing-card.featured .plan-desc { color: rgba(0,0,0,0.65); }
+  .plan-price { margin-bottom: 1.5rem; }
+  .plan-price .amount { font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; color: var(--saffron); line-height: 1; }
+  .pricing-card.featured .plan-price .amount { color: var(--black); }
+  .plan-price .period { font-size: 0.85rem; color: var(--text-on-dark); }
+  .pricing-card.featured .plan-price .period { color: rgba(0,0,0,0.6); }
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
+  .plan-features li { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.88rem; color: var(--text-on-dark); line-height: 1.5; }
+  .pricing-card.featured .plan-features li { color: rgba(0,0,0,0.75); }
+  .plan-features li::before { content: '✓'; color: var(--saffron); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+  .pricing-card.featured .plan-features li::before { color: var(--black); }
+  .plan-cta {
+    display: block; text-align: center;
+    margin-top: 1.75rem;
+    padding: 12px 0; border-radius: 10px;
+    font-weight: 800; font-size: 0.9rem; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .pricing-card:not(.featured) .plan-cta { background: rgba(255,255,255,0.07); color: var(--white); border: 1px solid var(--border-dark); }
+  .pricing-card:not(.featured) .plan-cta:hover { background: rgba(255,255,255,0.12); }
+  .pricing-card.featured .plan-cta { background: var(--black); color: var(--saffron); }
+  .pricing-card.featured .plan-cta:hover { opacity: 0.85; }
+
+  /* ── RESULTS ── */
+  .results { padding: 80px 2rem; background: var(--white); }
+  .results-inner { max-width: 1060px; margin: 0 auto; }
+  .results-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .stat-card { text-align: center; padding: 2rem 1rem; background: var(--off-white); border-radius: var(--radius); border: 1px solid var(--border-light); }
+  .stat-card .big-num { font-family: var(--font-display); font-size: 2.8rem; font-weight: 900; color: var(--saffron-dark); line-height: 1; margin-bottom: 0.5rem; }
+  .stat-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { padding: 80px 2rem; background: var(--charcoal); }
+  .testimonials .section-title { color: var(--white); }
+  .testimonials .section-sub { color: var(--text-on-dark); }
+  .testimonials .section-tag { background: rgba(255,153,51,0.15); }
+  .t-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 3rem auto 0; }
+  .t-card { background: var(--charcoal-2); border: 1px solid var(--border-dark); border-radius: 14px; padding: 2rem 1.75rem; position: relative; }
+  .t-card::before { content: '\201C'; font-family: var(--font-display); font-size: 5rem; color: var(--saffron); opacity: 0.2; position: absolute; top: 0.5rem; left: 1.25rem; line-height: 1; }
+  .t-card blockquote { font-size: 0.95rem; color: var(--text-on-dark); line-height: 1.75; font-style: italic; margin-bottom: 1.25rem; padding-top: 1rem; }
+  .t-author { display: flex; align-items: center; gap: 0.85rem; }
+  .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--saffron); color: var(--black); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; flex-shrink: 0; }
+  .t-author strong { display: block; font-size: 0.92rem; font-weight: 600; color: var(--white); }
+  .t-author span { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+  .stars { color: var(--saffron); font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+  /* ── FAQs ── */
+  .faqs { padding: 80px 2rem; background: var(--white); }
+  .faqs-inner { max-width: 720px; margin: 0 auto; }
+  .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border-light); }
+  .faq-item { border-bottom: 1px solid var(--border-light); }
+  .faq-q {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 0; text-align: left;
+    font-family: var(--font-body); font-size: 0.97rem; font-weight: 700; color: var(--black);
+    transition: color 0.2s;
+  }
+  .faq-q:hover { color: var(--saffron-dark); }
+  .faq-q .faq-icon { font-size: 1.3rem; font-weight: 400; color: var(--saffron); flex-shrink: 0; transition: transform 0.25s; }
+  .faq-q.open .faq-icon { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+  .faq-a.open { max-height: 200px; padding-bottom: 1.25rem; }
+  .faq-a p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── CTA ── */
+  .cta-section { padding: 90px 2rem; background: var(--saffron); text-align: center; }
+  .cta-section h2 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: var(--black); letter-spacing: -0.8px; margin-bottom: 1rem; line-height: 1.15; }
+  .cta-section p { color: rgba(0,0,0,0.65); font-size: 1rem; max-width: 480px; margin: 0 auto 2rem; }
+  .cta-form { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; max-width: 680px; margin: 0 auto; }
+  .cta-form input, .cta-form select {
+    flex: 1; min-width: 180px;
+    padding: 14px 16px; border-radius: 10px;
+    border: none; font-size: 0.92rem; font-family: var(--font-body);
+    background: rgba(0,0,0,0.08); color: var(--black);
+    outline: none;
+  }
+  .cta-form input::placeholder { color: rgba(0,0,0,0.45); }
+  .cta-form input:focus, .cta-form select:focus { background: rgba(0,0,0,0.13); }
+  .cta-form select { color: rgba(0,0,0,0.7); cursor: pointer; }
+  .cta-submit {
+    background: var(--black); color: var(--saffron);
+    border: none; border-radius: 10px;
+    padding: 14px 30px; font-family: var(--font-body); font-size: 0.92rem; font-weight: 800;
+    cursor: pointer; letter-spacing: 0.3px; white-space: nowrap;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+  .cta-submit:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--navy-dark); color: rgba(255,255,255,0.55); text-align: center; padding: 2.25rem 2rem; font-size: 0.88rem; line-height: 1.9; border-top: 3px solid var(--saffron); }
+  .footer-brand { font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: var(--white); margin-bottom: 0.35rem; }
+  .footer-brand span { color: var(--saffron); }
+  footer a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--saffron); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .steps::before { display: none; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .results-stats { grid-template-columns: repeat(2, 1fr); }
+    .why-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  @media (max-width: 540px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    .hero { padding: 70px 1.25rem 80px; }
+    .included, .why, .process, .pricing, .results, .testimonials, .faqs, .cta-section { padding: 60px 1.25rem; }
+    .results-stats { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Bright<span>Mark</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="#enquire">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-accent-bar"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Social Media Management</div>
+      <h1>Your Brand,<br><em>Active Every Day.</em></h1>
+      <p class="hero-desc">Chennai businesses don't have time to run social media and run a business. We do both — so your brand stays visible, consistent, and converting while you focus on what you do best.</p>
+      <a href="#enquire" class="btn-primary">Get a Free Strategy Call</a>
+      <a href="#pricing" class="btn-outline">View Pricing</a>
+    </div>
+    <div class="hero-stat-block">
+      <div class="hero-stat">
+        <div class="num">2×</div>
+        <div class="label">Average engagement growth in 60 days</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">150+</div>
+        <div class="label">Chennai businesses managed</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">98%</div>
+        <div class="label">Client retention rate</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">4</div>
+        <div class="label">Platforms managed per client on average</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section class="included" id="services">
+  <div style="max-width:1060px; margin:0 auto;">
+    <div class="section-header">
+      <div class="section-tag">What You Get</div>
+      <h2 class="section-title">Everything <em>Included</em></h2>
+      <p class="section-sub">Every plan covers the full stack — no add-ons, no surprises.</p>
+    </div>
+    <div class="included-grid">
+      <div class="inc-card">
+        <div class="inc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg></div>
+        <div><h4>Content Creation</h4><p>Custom graphics, captions, and creatives tailored to your brand voice and Chennai audience.</p></div>
+      </div>
+      <div class="inc-card">
+        <div class="inc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+        <div><h4>Content Scheduling</h4><p>Posts go out at peak engagement times — consistent cadence, zero gaps in your feed.</p></div>
+      </div>
+      <div class="inc-card">
+        <div class="inc-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div><h4>Community Management</h4><p>We respond to comments and DMs professionally, keeping your audience engaged and warm.</p></div>
+      </div>
+      <div class="inc-card">
+        <div class="inc-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" rx="2"/><path d="M8 2v4M16 2v4M4 10h16"/><path d="M8 14h.01M12 14h.01M16 14h.01"/></svg></div>
+        <div><h4>Caption & Hashtag Writing</h4><p>Every post has a purpose — persuasive copy and researched hashtags that expand your reach.</p></div>
+      </div>
+      <div class="inc-card">
+        <div class="inc-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div><h4>Platform Management</h4><p>Instagram, Facebook, LinkedIn, YouTube Shorts — we manage them all under one roof.</p></div>
+      </div>
+      <div class="inc-card">
+        <div class="inc-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <div><h4>Monthly Performance Report</h4><p>Clear, jargon-free reports showing reach, engagement, follower growth, and what we're doing next.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT MATTERS -->
+<section class="why">
+  <div class="why-inner">
+    <div class="why-text">
+      <div class="section-tag">Why It Matters</div>
+      <h2 class="section-title">Silence Kills <em>Brands.</em></h2>
+      <p class="section-sub">Your competitors are posting every day. If you're not visible, you don't exist.</p>
+      <div class="problem-solution">
+        <div class="ps-item">
+          <span class="ps-badge problem">Problem</span>
+          <p><strong>Inconsistent posting</strong> — your audience forgets you exist between long gaps of silence.</p>
+        </div>
+        <div class="ps-item">
+          <span class="ps-badge solution">Solution</span>
+          <p>We maintain a <strong>daily presence</strong> across platforms so your brand stays top of mind, always.</p>
+        </div>
+        <div class="ps-item">
+          <span class="ps-badge problem">Problem</span>
+          <p><strong>Generic content</strong> that looks like every other business — no identity, no recall.</p>
+        </div>
+        <div class="ps-item">
+          <span class="ps-badge solution">Solution</span>
+          <p>We build a <strong>distinct visual identity</strong> for your social profiles rooted in your brand and your city.</p>
+        </div>
+        <div class="ps-item">
+          <span class="ps-badge problem">Problem</span>
+          <p><strong>No time</strong> to create, schedule, and respond while running a business.</p>
+        </div>
+        <div class="ps-item">
+          <span class="ps-badge solution">Solution</span>
+          <p>We handle <strong>everything end to end</strong> — you only show up to review and approve.</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="why-visual-title">Average client results at 90 days</div>
+      <div class="why-bar-row">
+        <div class="why-bar-label"><span>Follower growth</span><span>+84%</span></div>
+        <div class="why-bar-track"><div class="why-bar-fill" style="width:84%"></div></div>
+      </div>
+      <div class="why-bar-row">
+        <div class="why-bar-label"><span>Post reach</span><span>+120%</span></div>
+        <div class="why-bar-track"><div class="why-bar-fill" style="width:100%"></div></div>
+      </div>
+      <div class="why-bar-row">
+        <div class="why-bar-label"><span>Engagement rate</span><span>+67%</span></div>
+        <div class="why-bar-track"><div class="why-bar-fill" style="width:67%"></div></div>
+      </div>
+      <div class="why-bar-row">
+        <div class="why-bar-label"><span>DM enquiries</span><span>+95%</span></div>
+        <div class="why-bar-track"><div class="why-bar-fill" style="width:95%"></div></div>
+      </div>
+      <div class="why-bar-row">
+        <div class="why-bar-label"><span>Profile visits</span><span>+73%</span></div>
+        <div class="why-bar-track"><div class="why-bar-fill" style="width:73%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-inner">
+    <div class="section-header">
+      <div class="section-tag">How We Work</div>
+      <h2 class="section-title">From Day One to <em>Day Done.</em></h2>
+      <p class="section-sub">A clean four-step process — you're never left wondering what happens next.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Onboarding & Brand Audit</h4>
+        <p>We learn your business, your audience, your tone, and your goals before touching a single post.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Content Strategy</h4>
+        <p>We build a monthly content calendar — themes, post types, and a visual identity guide specific to your brand.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Create & Approve</h4>
+        <p>You review all content before it goes live. Every graphic, every caption — nothing gets posted without your sign-off.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Publish, Engage & Report</h4>
+        <p>We go live, manage your community, and send you a plain-English performance report every month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section class="platforms">
+  <div class="platforms-inner">
+    <div class="section-tag">Platforms We Manage</div>
+    <h2 class="section-title">One Team. <em>Every Platform.</em></h2>
+    <div class="platform-list">
+      <div class="platform-badge"><div class="platform-dot" style="background:#E1306C"></div>Instagram</div>
+      <div class="platform-badge"><div class="platform-dot" style="background:#1877F2"></div>Facebook</div>
+      <div class="platform-badge"><div class="platform-dot" style="background:#0A66C2"></div>LinkedIn</div>
+      <div class="platform-badge"><div class="platform-dot" style="background:#FF0000"></div>YouTube Shorts</div>
+      <div class="platform-badge"><div class="platform-dot" style="background:#25D366"></div>WhatsApp Business</div>
+      <div class="platform-badge"><div class="platform-dot" style="background:#000000"></div>X (Twitter)</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div style="max-width:1060px; margin:0 auto; text-align:center;">
+    <div class="section-tag">Pricing Plans</div>
+    <h2 class="section-title">Straightforward Pricing.<br><em>No Hidden Fees.</em></h2>
+    <p class="section-sub" style="margin:0 auto;">Choose the plan that fits your business size and goals. All plans include onboarding, monthly reporting, and a dedicated account manager.</p>
+  </div>
+  <div class="pricing-grid">
+
+    <div class="pricing-card">
+      <div class="plan-name">Starter</div>
+      <div class="plan-desc">Perfect for small businesses and new brands just getting started on social media.</div>
+      <div class="plan-price">
+        <span class="amount">₹8,999</span>
+        <span class="period"> / month</span>
+      </div>
+      <ul class="plan-features">
+        <li>2 platforms managed</li>
+        <li>12 posts per month</li>
+        <li>Caption and hashtag writing</li>
+        <li>Basic graphic design</li>
+        <li>Monthly performance report</li>
+        <li>Email support</li>
+      </ul>
+      <a href="#enquire" class="plan-cta">Get Started</a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="popular-badge">Most Popular</div>
+      <div class="plan-name">Growth</div>
+      <div class="plan-desc">Built for growing businesses that want to dominate their niche in Chennai and beyond.</div>
+      <div class="plan-price">
+        <span class="amount">₹17,999</span>
+        <span class="period"> / month</span>
+      </div>
+      <ul class="plan-features">
+        <li>4 platforms managed</li>
+        <li>24 posts per month</li>
+        <li>Reels and short video content</li>
+        <li>Community management (DMs + comments)</li>
+        <li>Competitor analysis</li>
+        <li>Bi-weekly strategy calls</li>
+        <li>Priority WhatsApp support</li>
+      </ul>
+      <a href="#enquire" class="plan-cta">Get Started</a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="plan-name">Pro</div>
+      <div class="plan-desc">For established brands and multi-location businesses that need full-scale management.</div>
+      <div class="plan-price">
+        <span class="amount">₹34,999</span>
+        <span class="period"> / month</span>
+      </div>
+      <ul class="plan-features">
+        <li>6 platforms managed</li>
+        <li>40+ posts per month</li>
+        <li>Dedicated content creator</li>
+        <li>Influencer outreach (Chennai-based)</li>
+        <li>Paid social ad integration</li>
+        <li>Weekly strategy sessions</li>
+        <li>24/7 priority support</li>
+      </ul>
+      <a href="#enquire" class="plan-cta">Get Started</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results">
+  <div class="results-inner">
+    <div class="section-header">
+      <div class="section-tag">Our Results</div>
+      <h2 class="section-title">Numbers That <em>Speak.</em></h2>
+      <p class="section-sub">Real outcomes from real Chennai businesses we've worked with.</p>
+    </div>
+    <div class="results-stats">
+      <div class="stat-card">
+        <div class="big-num">65%</div>
+        <p>Average increase in website traffic from social channels in 3 months</p>
+      </div>
+      <div class="stat-card">
+        <div class="big-num">2.4×</div>
+        <p>Average follower growth across all platforms in the first 60 days</p>
+      </div>
+      <div class="stat-card">
+        <div class="big-num">150+</div>
+        <p>Chennai businesses across retail, F&amp;B, health, and services sectors</p>
+      </div>
+      <div class="stat-card">
+        <div class="big-num">4.9★</div>
+        <p>Average client satisfaction score across all active accounts</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div style="max-width:1060px; margin:0 auto; text-align:center;">
+    <div class="section-tag">Client Stories</div>
+    <h2 class="section-title">What Chennai Says <em>About Us.</em></h2>
+  </div>
+  <div class="t-grid">
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"BrightMark completely transformed our Instagram. We went from 400 followers to over 3,200 in four months — and more importantly, we started getting direct enquiries through DMs every single day. The team genuinely understands what Chennai customers respond to."</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">RK</div>
+        <div>
+          <strong>Ramesh Kumar</strong>
+          <span>Founder, Kovai Interiors, T. Nagar</span>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"I was sceptical about outsourcing our social media but BrightMark changed my mind in the first month. The content is on-brand, the captions are sharp, and they respond to our customers faster than we ever did. Best business decision we made this year."</blockquote>
+      <div class="t-author">
+        <div class="t-avatar">PM</div>
+        <div>
+          <strong>Priya Meenakshisundaram</strong>
+          <span>Owner, Kalai Boutique, Adyar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQs -->
+<section class="faqs">
+  <div class="faqs-inner">
+    <div class="section-header">
+      <div class="section-tag">FAQs</div>
+      <h2 class="section-title">Questions We <em>Always Get.</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you create the content or do we? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>We handle everything — research, design, captions, and scheduling. You only need to review and approve the monthly content calendar before anything goes live. No effort required on your end.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How many posts will go out per week? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>It depends on your plan. Starter covers around 3 posts per week, Growth covers 6, and Pro covers 10 or more. We build a custom content calendar each month that you approve in advance.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can we approve posts before they go live? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Absolutely. Every post is shared with you via a content calendar before it is scheduled. Nothing goes live without your explicit approval. You stay in control at all times.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you handle customer replies and comments? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Yes — Growth and Pro plans include community management. We respond to comments and DMs in your brand voice within 24 hours on business days. Starter clients can add this as an optional service.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How soon will we see results? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Most clients see measurable improvements in reach and engagement within the first 30 days. Significant follower growth and direct enquiries typically begin between weeks 6 and 10, depending on the starting point.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is there a contract or lock-in period? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>We recommend a minimum 3-month engagement to see meaningful results, but there is no long-term lock-in. You can cancel with 30 days notice at any time after the initial period.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT FORM -->
+<section class="cta-section" id="enquire">
+  <h2>Ready to Grow Your Social Media?</h2>
+  <p>Tell us about your business and we'll get back to you within one business day with a free strategy recommendation.</p>
+  <form class="cta-form" onsubmit="handleSubmit(event)">
+    <input type="text" placeholder="Your name" required />
+    <input type="text" placeholder="Business name" required />
+    <input type="tel" placeholder="Phone number" required />
+    <select>
+      <option value="" disabled selected>Platform of interest</option>
+      <option>Instagram</option>
+      <option>Facebook</option>
+      <option>LinkedIn</option>
+      <option>YouTube Shorts</option>
+      <option>All platforms</option>
+    </select>
+    <button type="submit" class="cta-submit">Send Enquiry →</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Bright<span>Mark</span> Solutions</div>
+  <div>Chennai's digital growth partner since 2018</div>
+  <div>
+    <a href="mailto:contact@brightmark.in">contact@brightmark.in</a>
+    &nbsp;·&nbsp;
+    <a href="tel:+919840012345">+91 98400 12345</a>
+  </div>
+  <div style="margin-top:1rem; font-size:0.78rem; color:rgba(255,255,255,0.3);">© 2025 BrightMark Solutions, Chennai. All rights reserved.</div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a.open').forEach(a => { a.classList.remove('open'); a.previousElementSibling.classList.remove('open'); });
+    if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.cta-submit');
+    btn.textContent = 'Sent! We\'ll be in touch.';
+    btn.style.background = '#1A3C6E';
+    btn.style.color = '#fff';
+    btn.disabled = true;
+  }
+</script>
+
+</body>
+</html>
