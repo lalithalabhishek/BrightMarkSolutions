@@ -748,10 +748,10 @@
   <h2>Ready to Grow Your Social Media?</h2>
   <p>Tell us about your business and we'll get back to you within one business day with a free strategy recommendation.</p>
   <form class="cta-form" onsubmit="handleSubmit(event)">
-    <input type="text" placeholder="Your name" required />
-    <input type="text" placeholder="Business name" required />
-    <input type="tel" placeholder="Phone number" required />
-    <select>
+    <input type="text" id="enquiryName" placeholder="Your name" required />
+    <input type="text" id="enquiryBusiness" placeholder="Business name" required />
+    <input type="tel" id="enquiryPhone" placeholder="Phone number" required />
+    <select id="enquiryPlatform">
       <option value="" disabled selected>Platform of interest</option>
       <option>Instagram</option>
       <option>Facebook</option>
@@ -783,13 +783,39 @@
     if (!isOpen) { answer.classList.add('open'); btn.classList.add('open'); }
   }
 
+  // Replace this with the Web App URL you get after deploying the Apps Script
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyarneKix9IWmthKssZkMuZ6wdnChBREI_NCooVOKtjN9Fr3kd9KwPwi7ntSchD-lk/exec';
+
   function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.cta-submit');
-    btn.textContent = 'Sent! We\'ll be in touch.';
-    btn.style.background = '#1A3C6E';
-    btn.style.color = '#fff';
+    const form = e.target;
+    const btn = form.querySelector('.cta-submit');
+
+    const payload = {
+      name: document.getElementById('enquiryName').value,
+      businessName: document.getElementById('enquiryBusiness').value,
+      phone: document.getElementById('enquiryPhone').value,
+      platform: document.getElementById('enquiryPlatform').value
+    };
+
+    btn.textContent = 'Sending...';
     btn.disabled = true;
+
+    fetch(WEB_APP_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    })
+      .then(() => {
+        btn.textContent = 'Sent! We\'ll be in touch.';
+        btn.style.background = '#1A3C6E';
+        btn.style.color = '#fff';
+        form.reset();
+      })
+      .catch(() => {
+        btn.textContent = 'Something went wrong — please try again';
+        btn.disabled = false;
+      });
   }
 </script>
 
